@@ -7,7 +7,7 @@ script:
 - pwd
 - ls -la
 - mkdir output
-- zip output/streamfile.zip streamfile.py packages/*
+- zip output/streamfile.zip streamfile.py packages/**
 - ls -la output
 deploy:
   skip_cleanup: true
