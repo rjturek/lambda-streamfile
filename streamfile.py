@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         lineslist = r.text.split('\n')
         for line in lineslist:
             print("aline:", line)
-            r = requests.post(url=gatewayUrl, data=line, headers={'Connection':'close'})
-            print(r.url, r.status_code)
+            # r = requests.post(url=gatewayUrl, data=line, headers={'Connection':'close'})
+            # print(r.url, r.status_code)
 
     return "File contents streamed to Data Pipe Gateway"
