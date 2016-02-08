@@ -9,8 +9,8 @@ def lambda_handler(event, context):
     print('Function Start .................')
     print("Received event: " + json.dumps(event, indent=2))
 
-    fileUploaded = event['Records'][0]['s3']['object']['key'] + " to S3"
-    print(fileUploaded)
+    fileUploaded = event['Records'][0]['s3']['object']['key']
+    print(fileUploaded, "uploaded to S3")
     print('Function End ...................')
 
     if fileUploaded == "yummyfood.csv":
