@@ -14,14 +14,14 @@ def lambda_handler(event, context):
     print('bbbbbbbbbbbbbbbbbbbbbb')
     print("Received event: " + json.dumps(event, indent=2))
     print("File uploaded = " + event['Records'][0]['s3']['object']['key'] + " to S3")
-    print('EEEEEEEEEEEEEEEEEEEEEE')
+    print('eeeeeeeeeeeeeeeeeeeeee')
 
     s3 = boto3.resource('s3')
-    # bucket = s3.Bucket('skynetdatafiles')
+    bucket = s3.Bucket('skynetdatafiles')
 
-    for bucket in s3.buckets.all():
-        for key in bucket.objects.all():
-            print(key.key)
+    for key in bucket.objects.all():
+        print("found a file...")
+        print(key.key)
 
     return "hey there done"
     #raise Exception('Something went wrong')
