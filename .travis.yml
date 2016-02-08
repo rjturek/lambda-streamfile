@@ -11,8 +11,10 @@ script:
 - pwd
 - ls -la
 - mkdir output
-- zip output/streamfile.zip streamfile.py packages/
-- ls -la output
+- cd packages
+- cp ../streamfile.py
+- zip -r ../output/streamfile.zip ./
+- ls -la
 - find .
 
 deploy:
