@@ -19,6 +19,6 @@ def lambda_handler(event, context):
         lineslist = r.text.split('\n')
         for line in lineslist:
             print("aline:", line)
-            r = requests.post("http://skynet.elasticbeanstalk.com/publish/skynet-morningstar-feed", data = line)
+            r = requests.post("http://skynet.elasticbeanstalk.com/services/stream/publish/skynet-morningstar-feed", data = line)
             print(r.url, line, r.status_code)
     return "File contents streamed to Data Pipe Gateway"
