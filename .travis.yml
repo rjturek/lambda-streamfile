@@ -1,0 +1,19 @@
+language: python
+python:
+- '2.7'
+install: pip install -r requirements.txt
+script:
+- pwd
+- ls -la
+- mkdir output
+- zip output/streamfile.zip streamfile.py
+- ls -la output
+deploy:
+  provider: s3
+  access_key_id: AKIAJVIDFQIDLODBK5IA
+  secret_access_key:
+    secure: CyRkwWn7OoByyjOtGL6lry635G0B/UlHjMj8QVWAJ2L4Jb2Rr7Y4HkZjyDHC/pC/VHygLmGf/3jf75LaqIDGUfiRxUQh8IoA/Kstq0u/bUgk606fY1Ha5jK4pMdgwxsf6xEiSZTICS5OJV3h//qSMfIupCDGPPCHmBz51OSZZ9V1pclSI5DfKrv5/3SuG5NBFjqbF8wN6XnXCpEi5CHE7VcE1ck3bpY+9+6UCTTgnFqA+WHBE+qAHCr2M4aQwhGXc3jG5XtyB0LnYmUegT5Ttd02h+LGKJD8PZ+z+XbqQ7mPBNPKf62pd45O550xUzW1iTvCyB/NVb84F77ExmJC0fUcbvHbFQoryKNwljhtRHgtX79Rus6hulwzy1ebU5Mx5crOoExu7TgBdvaMyic3ZXGI3UL+iUuJ8rRyBPJ3x1659+7mVsxsAqiwp6c+Q2/DVO+hOK9yC2ubPf2/mGmD4/018VUpuONAHVAhlqQSodNlic3+Qk7ZpR/GROuCBhL+FSmq3wFv8v9kOAWSpCqUE4T2E8SfMKZeXmXS54BKQzcqUhTQ0jrDEbnhrQ5XlK90wAqNXnNfQnDfqoMA6Yaw5z7ccz49detjuaT7+GBxdRFbSkl5DI8A0TX7dTLmeCNxf9Qn3WRk24IPOpSvQFuyGrwBqnj4In4v8qo4sAXj0Gg=
+  bucket: skynetlambdas
+  acl: public_read
+  on:
+    repo: rjturek/lambda-streamfile
