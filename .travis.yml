@@ -9,6 +9,7 @@ script:
 - zip output/streamfile.zip streamfile.py
 - ls -la output
 deploy:
+  skip_cleanup: true
   provider: s3
   access_key_id: AKIAJVIDFQIDLODBK5IA
   secret_access_key:
