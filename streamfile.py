@@ -18,7 +18,7 @@ def lambda_handler(event, context):
         print(r.text)
         gatewayUrl = "http://skynet.elasticbeanstalk.com/services/stream/publish/skynet-morningstar-feed"
         lineslist = r.text.split('\n')
-        print("lineslist length:", len(lineslist))
+        print("lineslist length:::", len(lineslist))
         for line in lineslist:
             print("aline:", line)
             r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
