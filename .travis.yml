@@ -1,7 +1,11 @@
 language: python
+
 python:
 - '2.7'
-install: pip install -r requirements.txt pip -t packages
+
+install:
+  - pip install requests --target=packages
+  - pip install boto3    --target=packages
 
 script:
 - pwd
@@ -9,6 +13,7 @@ script:
 - mkdir output
 - zip output/streamfile.zip streamfile.py packages/**
 - ls -la output
+
 deploy:
   skip_cleanup: true
   provider: s3
