@@ -11,7 +11,6 @@ def lambda_handler(event, context):
 
     fileUploaded = event['Records'][0]['s3']['object']['key']
     print(fileUploaded, "uploaded to S3")
-    print('Function End ...................')
 
     if fileUploaded == "yummyfood.csv":
         r = requests.get("https://s3.amazonaws.com/skynetdatafiles/yummyfood.csv")
@@ -22,7 +21,9 @@ def lambda_handler(event, context):
         for line in lineslist:
             print("aline:", line)
             r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
+            print("code", r.status_code)
 
+    print('Function End ...................')
     return "File contents streamed to Data Pipe Gateway"
 
 
