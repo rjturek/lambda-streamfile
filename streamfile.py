@@ -1,29 +1,20 @@
 from __future__ import print_function
 
-import boto3
-# import botocore
-
 import json
+import requests
 
 print('............. Loading function ...............')
 
-
-#conn = S3Connection('AKIAJVIDFQIDLODBK5IA', 'lKQ7WokY7+RKU1cHAZsvywRHtwibbg0kJ+OcsFVp')
-
 def lambda_handler(event, context):
-    print('bbbbbbbbbbbbbbbbbbbbbb')
+    print('Function Start .................')
     print("Received event: " + json.dumps(event, indent=2))
-    print("File uploaded = " + event['Records'][0]['s3']['object']['key'] + " to S3")
-    print('eeeeeeeeeeeeeeeeeeeeee')
 
-    s3 = boto3.resource('s3')
-    bucket = s3.Bucket('skynetdatafiles')
+    fileUploaded = event['Records'][0]['s3']['object']['key'] + " to S3"
+    print(fileUploaded)
+    print('Function End ...................')
 
-    for key in bucket.objects.all():
-        print("found a file...")
-        print(key.key)
+    if fileUploaded == "yummyfood.csv":
+        r = requests.get("https://s3.amazonaws.com/skynetdatafiles/yummyfood.csv")
+        print(r.text)
 
-    return "hey there done"
-    #raise Exception('Something went wrong')
-
-##
+    return "File contents streamed to Data Pipe Gateway"
