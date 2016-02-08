@@ -1,14 +1,13 @@
 language: python
 python:
 - '2.7'
-install: pip install -r requirements.txt pip -t output
+install: pip install -r requirements.txt pip -t packages
 
 script:
-- python find_sitepackages.py
 - pwd
 - ls -la
 - mkdir output
-- zip output/streamfile.zip streamfile.py
+- zip output/streamfile.zip streamfile.py packages/*
 - ls -la output
 deploy:
   skip_cleanup: true
