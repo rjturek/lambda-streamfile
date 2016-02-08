@@ -14,8 +14,8 @@ script:
 - cp -p streamfile.py packages
 - cd packages
 - zip -r ../output/streamfile.zip ./
+- cd ..
 - ls -la
-- find .
 
 deploy:
   skip_cleanup: true
