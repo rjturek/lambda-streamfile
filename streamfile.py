@@ -16,9 +16,11 @@ def lambda_handler(event, context):
     if fileUploaded == "yummyfood.csv":
         r = requests.get("https://s3.amazonaws.com/skynetdatafiles/yummyfood.csv")
         print(r.text)
+        gatewayUrl = "http://skynet.elasticbeanstalk.com/services/stream/publish/skynet-morningstar-feed"
         lineslist = r.text.split('\n')
         for line in lineslist:
             print("aline:", line)
-            r = requests.post("http://skynet.elasticbeanstalk.com/services/stream/publish/skynet-morningstar-feed", data = line)
-            print(r.url, line, r.status_code)
+            r = requests.post(url=gatewayUrl, data=line, headers={'Connection':'close'})
+            print(r.url, r.status_code)
+
     return "File contents streamed to Data Pipe Gateway"
