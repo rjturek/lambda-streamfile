@@ -11,8 +11,8 @@ script:
 - pwd
 - ls -la
 - mkdir output
+- cp -p streamfile.py packages
 - cd packages
-- cp ../streamfile.py
 - zip -r ../output/streamfile.zip ./
 - ls -la
 - find .
