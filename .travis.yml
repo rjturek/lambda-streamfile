@@ -15,7 +15,7 @@ script:
 - cd packages
 - zip -r ../output/streamfile.zip ./
 - cd ..
-- ls -la .
+- ls -la output
 
 deploy:
   skip_cleanup: true
