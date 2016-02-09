@@ -26,7 +26,7 @@ def lambda_handler(event, context):
             print("aline:", line)
             r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
             print("code", r.status_code)
-            time.sleep(.03)
+            # time.sleep(.03)
     else:
         print("Not processing:", fileUploaded)
 
