@@ -32,7 +32,7 @@ def lambda_handler(event, context):
 
 
     print('Function End ...................')
-    return
+    return "done"
 
 
 testEvent = """
@@ -76,5 +76,5 @@ testEvent = """
 }
 """
 
-if __name__ == '__main__':
-    lambda_handler(testEvent, None)
+# if __name__ == '__main__':
+#     lambda_handler(testEvent, None)
