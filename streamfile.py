@@ -22,10 +22,13 @@ def lambda_handler(event, context):
         gatewayUrl = "http://skynet.elasticbeanstalk.com/services/stream/publish/skynet-morningstar-feed"
         lineslist = r.text.split('\n')
         print("lineslist length:", len(lineslist))
+        row_index = 0
         for line in lineslist:
-            print("aline:", line)
-            r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
-            print("code", r.status_code)
+            row_index = row_index + 1
+            ext_line = str(row_index) + "," + str(len(lineslist)) + "," + line
+            print("aline:", ext_line)
+            # r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
+            # print("code", r.status_code)
             # time.sleep(.03)
     else:
         print("Not processing:", fileUploaded)
