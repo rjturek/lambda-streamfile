@@ -5,7 +5,6 @@ python:
 
 install:
   - pip install requests --target=packages
-  - pip install boto3    --target=packages
 
 script:
 - pwd
