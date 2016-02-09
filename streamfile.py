@@ -21,15 +21,25 @@ def lambda_handler(event, context):
         print(r.text)
         gatewayUrl = "http://skynet.elasticbeanstalk.com/services/stream/publish/skynet-morningstar-feed"
         lineslist = r.text.split('\n')
-        print("lineslist length:", len(lineslist))
+
+        num_rows = len(lineslist) - 1
+
+        print("number of data rows:", num_rows)
+
         row_index = 0
         for line in lineslist:
             row_index = row_index + 1
-            ext_line = str(row_index) + "," + str(len(lineslist)) + "," + line
+            ext_line = str(row_index) + "," + str(num_rows) + "," + line
+
+            if row_index > num_rows:
+                ext_line = ""
+
             print("aline:", ext_line)
+
             r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
             print("code", r.status_code)
-            # time.sleep(.03)
+
+            time.sleep(.01)
     else:
         print("Not processing:", fileUploaded)
 
@@ -37,6 +47,9 @@ def lambda_handler(event, context):
     print('Function End ...................')
     return "done"
 
+
+# "key": "etf-2016-02-09.csv",
+# "key": "etf-testSmall.csv",
 
 testEvent = """
 {
@@ -52,7 +65,7 @@ testEvent = """
  "object": {
  "eTag": "d140625bbfa3fca0a6cf07de7dae960d",
  "sequencer": "0056B9E4C718D8D0D8",
- "key": "etf-2016-02-09.csv",
+ "key": "etf-testSmall.csv",
  "size": 87099
  },
  "bucket": {
