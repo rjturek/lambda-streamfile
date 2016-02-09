@@ -32,14 +32,14 @@ def lambda_handler(event, context):
             ext_line = str(row_index) + "," + str(num_rows) + "," + line
 
             if row_index > num_rows:
-                ext_line = ""
+                ext_line = "[EOF] filename: " + fileUploaded
 
             print("aline:", ext_line)
 
             r = requests.post(gatewayUrl, data=ext_line, headers={'Connection':'close'})
             print("code", r.status_code)
 
-            time.sleep(.05)
+            # time.sleep(.05)
     else:
         print("Not processing:", fileUploaded)
 
