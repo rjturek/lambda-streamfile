@@ -23,7 +23,7 @@ def lambda_handler(event, context):
             print("aline:", line)
             r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
             print("code", r.status_code)
-            time.sleep(4)
+            time.sleep(.4)
 
     print('Function End ...................')
     return "File contents streamed to Data Pipe Gateway"
