@@ -27,8 +27,8 @@ def lambda_handler(event, context):
             row_index = row_index + 1
             ext_line = str(row_index) + "," + str(len(lineslist)) + "," + line
             print("aline:", ext_line)
-            # r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
-            # print("code", r.status_code)
+            r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
+            print("code", r.status_code)
             # time.sleep(.03)
     else:
         print("Not processing:", fileUploaded)
