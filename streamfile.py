@@ -32,7 +32,8 @@ def lambda_handler(event, context):
             ext_line = str(row_index) + "," + str(num_rows) + "," + line
 
             if row_index > num_rows:
-                ext_line = "[EOF] filename: " + fileUploaded
+                # ext_line = "[EOF] filename: " + fileUploaded
+                break
 
             print("aline:", ext_line)
 
