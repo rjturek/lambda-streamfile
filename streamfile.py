@@ -26,7 +26,7 @@ def lambda_handler(event, context):
             print("aline:", line)
             r = requests.post(gatewayUrl, data=line, headers={'Connection':'close'})
             print("code", r.status_code)
-            time.sleep(.2)
+            time.sleep(.03)
     else:
         print("Not processing:", fileUploaded)
 
@@ -76,5 +76,5 @@ testEvent = """
 }
 """
 
-# if __name__ == '__main__':
-#     lambda_handler(testEvent, None)
+if __name__ == '__main__':
+    lambda_handler(json.loads(testEvent), None)
